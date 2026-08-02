@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRÍVEN Society | Hub Integrado & ExtratoTurbo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js para os gráficos interativos do ExtratoTurbo -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-deep: #1a0b2e; /* Roxo escuro berinjela profundo */
+            --bg-card: #24113c;
+            --emerald: #0b3c2d; /* Verde escuro esmeralda */
+            --gold: #d4af37; /* Dourado suave */
+            --cream: #f4f0ea; /* Tom creme/off-white */
+            --text-muted: #b8b2c4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 11, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--gold);
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 6rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--bg-deep) 0%, var(--emerald) 100%);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--cream);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--bg-deep);
+        }
+
+        /* Sections General */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Projeto Inicial: ExtratoTurbo */
+        .project-section {
+            background-color: rgba(36, 17, 60, 0.5);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .feature-card h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Container do Gráfico com Chart.js */
+        .chart-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Painel Interativo (LocalStorage) */
+        .interactive-section {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cream);
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            background-color: var(--bg-deep);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+            color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        #saved-feedback {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--emerald);
+            border-radius: 4px;
+            display: none;
+            text-align: center;
+            font-size: 0.95rem;
+            border: 1px solid var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            background-color: var(--bg-deep);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media(max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 8rem;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <span class="logo-title">bríven</span>
+            <span class="logo-subtitle">Society</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#projeto">Projeto Inicial</a></li>
+                <li><a href="#painel">Painel de Interação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Onde a inteligência financeira encontra a precisão do marketing.</h1>
+            <p>Um ecossistema integrado desenhado para estruturar negócios de alto padrão, unindo a força dos dados à sofisticação de marcas autênticas.</p>
+            <a href="#projeto" class="btn">Conhecer ExtratoTurbo</a>
+        </div>
+        <div class="hero-visual" style="text-align: center;">
+            <div style="font-size: 6rem; color: var(--gold); font-weight: 300; letter-spacing: 8px; text-shadow: 0 0 20px rgba(212,175,55,0.3);">BV</div>
+        </div>
+    </section>
+
+    <!-- Projeto Inicial: ExtratoTurbo -->
+    <section id="projeto" class="project-section">
+        <h2 class="section-title">Projeto Inicial: ExtratoTurbo</h2>
+        <p class="section-subtitle">Transformamos extratos bancários crus e confusos (.xls ou .ofx) em gráficos interativos, relatórios executivos e diagnósticos inteligentes via IA.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Upload & Normalização</h3>
+                <p>Compatível com múltiplos bancos (Itaú, Nubank, Bradesco, Santander). Unifica e padroniza tudo automaticamente em um só painel.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Categorização por IA</h3>
+                <p>A inteligência artificial mapeia e categoriza suas despesas com precisão, permitindo também o uso de tags e palavras-chave customizadas.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Insights & Relatórios</h3>
+                <p>Gera 6 gráficos analíticos dinâmicos, relatórios em Excel com 7 abas e alertas preditivos sobre hábitos e vilões do orçamento.</p>
+            </div>
+        </div>
+
+        <!-- Demonstração Visual com Chart.js -->
+        <div class="chart-container">
+            <h3 style="color: var(--gold); text-align: center; margin-bottom: 1.5rem; font-size: 1.1rem;">Prévia de Análise Consolidada (IA)</h3>
+            <canvas id="financeChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Painel Interativo com LocalStorage -->
+    <section id="painel">
+        <h2 class="section-title">Painel de Registro & Preferências</h2>
+        <p class="section-subtitle">Interaja com nossa interface de testes e salve suas preferências diretamente no navegador via Web Storage API.</p>
+
+        <div class="interactive-section">
+            <form id="preference-form">
+                <div class="form-group">
+                    <label for="userName">Seu Nome / Empresa</label>
+                    <input type="text" id="userName" placeholder="Ex: Evelin Lins" required>
+                </div>
+                <div class="form-group">
+                    <label for="userInterest">Interesse no Ecossistema</label>
+                    <input type="text" id="userInterest" placeholder="Ex: ExtratoTurbo / Consultoria Estratégica" required>
+                </div>
+                <div class="form-group">
+                    <label for="userNotes">Expectativas do Negócio</label>
+                    <textarea id="userNotes" rows="3" placeholder="Descreva seus objetivos..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Salvar Preferências no Navegador</button>
+            </form>
+            <div id="saved-feedback"></div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 BRÍVEN Society. Todos os direitos reservados. Feito com HTML5, CSS Grid, Chart.js e Vanilla JS.</p>
+    </footer>
+
+    <!-- Scripts (Chart.js + LocalStorage) -->
+    <script>
+        // Configuração do Gráfico Interativo com Chart.js
+        const ctx = document.getElementById('financeChart').getContext('2d');
+        const financeChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Operacional', 'Marketing & Tráfego', 'Tecnologia & IA', 'Reservas / Caixa'],
+                datasets: [{
+                    label: 'Distribuição Orçamentária (%)',
+                    data: [35, 25, 20, 20],
+                    backgroundColor: [
+                        '#d4af37',
+                        '#0b3c2d',
+                        '#24113c',
+                        '#b8b2c4'
+                    ],
+                    borderColor: '#1a0b2e',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#f4f0ea',
+                            font: {
+                                family: 'Montserrat',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Lógica de Persistência com LocalStorage
+        const form = document.getElementById('preference-form');
+        const feedbackDiv = document.getElementById('saved-feedback');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedData = localStorage.getItem('briven_user_preference');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('userName').value = data.name || '';
+                document.getElementById('userInterest').value = data.interest || '';
+                document.getElementById('userNotes').value = data.notes || '';
+                
+                feedbackDiv.style.display = 'block';
+                feedbackDiv.innerHTML = `<strong>Dados recuperados via LocalStorage:</strong> Olá de volta, ${data.name}! Suas preferências anteriores foram restauradas.`;
+            }
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('userName').value,
+                interest: document.getElementById('userInterest').value,
+                notes: document.getElementById('userNotes').value,
+                date: new Date().toLocaleDateString()
+            };
+
+            localStorage.setItem('briven_user_preference', JSON.stringify(formData));
+
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = `<strong>Sucesso!</strong> Dados salvos no navegador com sucesso. Pronto para commit no Git e deploy no GitHub Pages!`;
+        });
+    </script>
+</body>
+</html>
