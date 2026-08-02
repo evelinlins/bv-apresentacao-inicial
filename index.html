@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Arimo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #1a0b2e; /* Roxo escuro berinjela profundo */
@@ -262,6 +262,7 @@
             gap: 1.5rem;
             text-align: left;
             margin-top: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .feature-item {
@@ -281,6 +282,24 @@
             color: var(--text-muted);
             font-size: 0.85rem;
             margin: 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--bg-deep);
+            padding: 0.9rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--cream);
+            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -346,12 +365,12 @@
         
         <div class="identity-grid">
             <div class="identity-card">
-                <h3>Paleta de Cores</h3>
-                <p><strong>Roxo Escuro Berinjela</strong> (#1a0b2e) associado ao <strong>Verde Escuro Esmeralda</strong> (#0b3c2d), iluminados por toques de <strong>Dourado Suave</strong> (#d4af37) e Creme Off-White (#f4f0ea).</p>
+                <h3>O Significado da BRÍVEN</h3>
+                <p>Uma essência que evoca distinção, solidez, sobriedade e elegância atemporal, refletindo o compromisso inegociável com a excelência executiva e a sofisticação corporativa.</p>
             </div>
             <div class="identity-card">
                 <h3>Tipografia & Estética</h3>
-                <p>Estética editorial sóbria, limpa e altamente profissional baseada na fonte Montserrat, transmitindo clareza imediata para gestores, heads e parceiros.</p>
+                <p>Curadoria tipográfica rica e harmoniosa unindo a robustez limpa da <strong>Montserrat</strong>, o charme sofisticado do <strong>Tan Paris</strong>, a elegância clássica do <strong>The Seasons</strong> e o toque funcional da <strong>Arimo</strong>.</p>
             </div>
             <div class="identity-card">
                 <h3>Posicionamento</h3>
@@ -373,8 +392,8 @@
             </div>
             <div class="pillar-box">
                 <span class="author">Douglas</span>
-                <h3>Inteligência Financeira & Gestão de Dados</h3>
-                <p>Estruturação de processos analíticos, clareza orçamentária e precisão matemática para garantir solidez, escalabilidade e tomada de decisão fundamentada em métricas reais.</p>
+                <h3>Inteligência Financeira & Saúde Financeira</h3>
+                <p>Estruturação de processos analíticos, clareza orçamentária e precisão matemática rigorosa na gestão de dados para garantir solidez, escalabilidade e tomada de decisão fundamentada.</p>
             </div>
         </div>
     </section>
@@ -402,6 +421,8 @@
                     <p>Geração instantânea de relatórios consolidados para diagnósticos financeiros assertivos.</p>
                 </div>
             </div>
+
+            <a href="https://extratoturbo.com.br" target="_blank" class="btn-primary">Acessar ExtratoTurbo</a>
         </div>
     </section>
 
