@@ -1,0 +1,382 @@
+/* ==========================================================================
+   BRIVÉN Design System — Padrão Executivo de Estúdio
+   Cores Oficiais (Canva):
+   - Creme (Laranja claro): #e9dbc1
+   - Roxo Escuro:           #190d24
+   - Ciano/Verde Escuro:    #0a2b29
+   Tipografia: Outfit (Headings) + Plus Jakarta Sans (Body) + Arima (Logo)
+   ========================================================================== */
+
+:root {
+  /* Cores Oficiais da Marca */
+  --briven-roxo: #190d24;
+  --briven-verde: #0a2b29;
+  --briven-creme: #e9dbc1;
+  --briven-creme-soft: #f4ecdf;
+  --briven-creme-muted: #cfc1a5;
+  
+  /* Lilás Nobre (Dentro da família do Roxo para Contraste & Elegância) */
+  --briven-lilas: #735384;
+  --briven-lilas-light: #c8b6d6;
+
+  /* Modo Claro (Clean, Luminoso, Constraste Absoluto) */
+  --bg-page: #faf7f2;
+  --bg-surface: #ffffff;
+  --bg-surface-tint: #f2ebd9;
+  --bg-surface-card: #fdfbf7;
+  --bg-nav: rgba(250, 247, 242, 0.95);
+
+  --text-primary: #190d24;         /* Roxo escuro nos títulos e textos */
+  --text-accent: #0a2b29;          /* Verde escuro da paleta */
+  --text-eyebrow: #684878;         /* Lilás profundo nos subtítulos para contraste perfeito */
+  --text-muted: #2f2038;
+  --text-light: #523e60;
+
+  --border-subtle: rgba(25, 13, 36, 0.12);
+  --border-hover: rgba(25, 13, 36, 0.25);
+  --border-accent: rgba(10, 43, 41, 0.3);
+
+  --btn-primary-bg: #190d24;
+  --btn-primary-text: #e9dbc1;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #190d24;
+  --btn-secondary-border: #190d24;
+
+  /* Geometria e Formas Arredondadas */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-pill: 9999px;
+  --radius-arch: 180px 180px 28px 28px;
+
+  --shadow-sm: 0 4px 16px rgba(25, 13, 36, 0.05);
+  --shadow-md: 0 12px 36px rgba(25, 13, 36, 0.09);
+  --shadow-lg: 0 24px 60px rgba(25, 13, 36, 0.14);
+
+  --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modo Escuro (Obsidian Berinjela Profundo com Tipografia Creme & Lilás) */
+[data-theme="dark"] {
+  --bg-page: #100717;          /* Obsidian profundo */
+  --bg-surface: #190d24;       /* O Roxo Oficial do Canva */
+  --bg-surface-tint: #231333;
+  --bg-surface-card: #200f30;
+  --bg-nav: rgba(16, 7, 23, 0.9);
+
+  --text-primary: #e9dbc1;      /* O Creme oficial é o texto principal */
+  --text-accent: #c8b6d6;       /* Lilás suave elegante e nítido */
+  --text-eyebrow: #c8b6d6;      /* Lilás suave nos subtítulos = CONTRASTE TOTAL E ELEGANTE */
+  --text-muted: #cfc1a5;
+  --text-light: #9d8e74;
+
+  --border-subtle: rgba(233, 219, 193, 0.12);
+  --border-hover: rgba(233, 219, 193, 0.28);
+  --border-accent: rgba(200, 182, 214, 0.35);
+
+  --btn-primary-bg: #e9dbc1;
+  --btn-primary-text: #190d24;
+  --btn-secondary-bg: rgba(233, 219, 193, 0.08);
+  --btn-secondary-text: #e9dbc1;
+  --btn-secondary-border: rgba(233, 219, 193, 0.4);
+
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 36px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.65);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.font-logo {
+  font-family: 'Arima', cursive, serif;
+  letter-spacing: 0.18em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Tags de Seção Arredondadas (Inspiradas no Portfólio) */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface-tint);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 20px;
+}
+
+.section-tag.verde {
+  background: rgba(10, 43, 41, 0.15);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="dark"] .section-tag.verde {
+  background: rgba(10, 43, 41, 0.6);
+  color: #34d399;
+}
+
+/* Botões Pílula Refinados */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1.5px solid var(--btn-secondary-border);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background-color: rgba(10, 43, 41, 0.08);
+  border-color: var(--text-accent);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: rgba(233, 219, 193, 0.18);
+  border-color: var(--briven-creme);
+}
+
+/* Tipografia do Hero com Serifa Editorial Nobre */
+/* Subtítulo / Eyebrow nos Cards com Lilás Suave e Contraste Nobre */
+.card-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--text-eyebrow);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hero-headline {
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  line-height: 1.15;
+}
+
+.hero-serif-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.highlight-accent {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  color: var(--text-accent);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.btn-sm {
+  padding: 10px 22px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+/* Navbar Flutuante em Pílula */
+.navbar-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 20px;
+}
+
+.navbar {
+  max-width: 1140px;
+  margin: 0 auto;
+  background: var(--bg-nav);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+/* Alternância Dinâmica das Logos por Tema */
+.logo-white { display: none; }
+.logo-dark  { display: block; }
+
+[data-theme="dark"] .logo-white { display: block; }
+[data-theme="dark"] .logo-dark  { display: none; }
+
+/* Moldura Fotográfica em Arco Clássico (Evelin & Douglas) */
+.arch-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-arch);
+  overflow: hidden;
+  background: var(--bg-surface-tint);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 24px;
+}
+
+.arch-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-frame:hover img {
+  transform: scale(1.04);
+}
+
+/* Cards Suaves Arredondados */
+.card-executive {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  transition: var(--transition);
+}
+
+.card-executive:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 7, 23, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  max-width: 540px;
+  width: 100%;
+  padding: 40px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+
